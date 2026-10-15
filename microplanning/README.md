@@ -2,23 +2,18 @@
 
 Esta carpeta es una implementación independiente de `heur_eventos` para las
 instancias AC-01, AC-02 y AC-03. Incluye el algoritmo, los datos de entrada, la
-evaluación de factibilidad y el ejecutor. No contiene ni llama a
-CP-SAT, LNS u otros métodos de optimización.
+evaluación de factibilidad y el ejecutor. 
 
 La metodología ejecutada es siempre:
 
 1. SSGS consciente del costo con candidatos por eventos.
-2. Recocido simulado sobre prioridades, disyunciones, holgura y `T_ref`.
+2. Simmulated Annealing sobre prioridades, disyunciones, holgura y `T_ref`.
 3. Búsqueda local.
 4. Verificación independiente de factibilidad y exportación de resultados.
 
 ## Requisitos e instalación
 
-La versión comprobada es **Python 3.11**. No se necesita ningún archivo del
-repositorio original, una base de datos ni un optimizador externo.
-
-Después de copiar o descomprimir la entrega debe existir una carpeta llamada
-`microplanning/`. Todos los comandos se ejecutan desde su directorio padre:
+La versión comprobada es **Python 3.11**. Todos los comandos se ejecutan desde su directorio padre:
 
 ```bash
 python3.11 -m venv .venv
@@ -116,14 +111,7 @@ inicios = resultado.inicios
 - `p03_operaciones_calendario.py`: operaciones numéricas compartidas por el SSGS y la evaluación.
 - `p04_decodificador_eventos.py`: SSGS rápido por eventos.
 - `p05_evaluacion.py`: métricas, factibilidad y exportación.
-- `p06_SA.py`: recocido simulado (SA) y búsqueda local.
+- `p06_SA.py`: SA y búsqueda local.
 - `p07_ejecutar.py`: coordinación, interfaz de línea de comandos y resultados.
 - `datos/`: todos los CSV necesarios para construir las tres instancias.
 - `requirements.txt`: versiones exactas de las dependencias comprobadas.
-
-## Portabilidad
-
-La carpeta puede copiarse completa a otra ubicación manteniendo el nombre
-`microplanning`. Se ejecuta desde su directorio padre con `python -m microplanning`.
-Los directorios `__pycache__` no son parte de la entrega: Python y Numba los
-regeneran automáticamente cuando hacen falta.
