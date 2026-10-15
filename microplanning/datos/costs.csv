@@ -1,0 +1,4 @@
+concept,unit,cost_usd,description
+over_capacity_hh,USD/hora-hombre,100.0,Costo por cada hora-hombre de demanda que excede la capacidad ofrecida
+idle_capacity_hh,USD/hora-hombre,50.0,Costo por cada hora-hombre de capacidad ofrecida que queda ociosa (sin demanda)
+over_tat,USD/dia,8500.0,Costo por cada dia que la check excede su TAT (horizonte) objetivo
