@@ -1,8 +1,14 @@
-# Heurística de microplanning por eventos
+# Microplanning autosuficiente
 
-Esta carpeta es una implementación independiente de `heur_eventos` para las
-instancias AC-01, AC-02 y AC-03. Incluye el algoritmo, los datos de entrada, la
-evaluación de factibilidad y el ejecutor. 
+Esta carpeta contiene implementaciones independientes para las instancias
+AC-01, AC-02 y AC-03. Incluye los algoritmos, datos de entrada, evaluación de
+factibilidad, dependencias y ejecutores; no requiere archivos ubicados fuera de
+`microplanning/`.
+
+Incluye dos métodos:
+
+- la heurística por eventos con Simulated Annealing;
+- un caso base greedy, estricto y determinista en `caso_base/`.
 
 La metodología ejecutada es siempre:
 
@@ -37,6 +43,41 @@ Varias instancias, con 600 segundos para cada una:
 ```bash
 python -m microplanning --instances ac01 ac02 ac03 --seed 1 --time 600
 ```
+
+Para ejecutar el caso base:
+
+```bash
+python -m microplanning.caso_base --instance ac01
+```
+
+También funciona con `ac02` y `ac03`. Es determinista, por lo que no recibe una
+semilla ni necesita múltiples corridas. Se puede escoger el directorio de
+salida con `--out`:
+
+```bash
+python -m microplanning.caso_base --instance ac03 --out resultados_base/ac03
+```
+
+Como alternativa, el ejecutor numerado se puede invocar directamente:
+
+```bash
+python microplanning/caso_base/p02_ejecutar.py --instance ac01
+```
+
+El caso base orienta las incompatibilidades una sola vez, fija un orden
+topológico y ubica cada hito en la alternativa factible de menor costo
+incremental. No usa reinicios, búsqueda local ni backtracking. Permite solamente
+el exceso mínimo inevitable cuando la demanda individual de un hito supera toda
+la capacidad regular de su especialidad.
+
+La salida predeterminada queda en `resultados_caso_base/` e incluye:
+
+- el vector de inicios (`.npy`);
+- el calendario de hitos y grupos (`_hitos.csv` y `_grupos.csv`);
+- el perfil de carga por especialidad y turno (`_carga.csv`);
+- el resumen de costos, TAT y validaciones (`_resumen.json`).
+
+La documentación detallada está en `microplanning/caso_base/README.md`.
 
 Sin `--instance` ni `--instances` se ejecutan las tres. Las opciones principales
 se consultan con:
@@ -113,5 +154,7 @@ inicios = resultado.inicios
 - `p05_evaluacion.py`: métricas, factibilidad y exportación.
 - `p06_SA.py`: SA y búsqueda local.
 - `p07_ejecutar.py`: coordinación, interfaz de línea de comandos y resultados.
+- `caso_base/p01_constructor.py`: construcción y evaluación del caso base.
+- `caso_base/p02_ejecutar.py`: interfaz de línea de comandos del caso base.
 - `datos/`: todos los CSV necesarios para construir las tres instancias.
 - `requirements.txt`: versiones exactas de las dependencias comprobadas.

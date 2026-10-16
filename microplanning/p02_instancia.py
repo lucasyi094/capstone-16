@@ -10,8 +10,7 @@ from dataclasses import dataclass, field
 from heapq import heappush, heappop
 import numpy as np
 import pandas as pd
-from .p01_configuracion import (DIAS_EXTRA, INTERVALOS_POR_DIA, INTERVALOS_POR_HORA,
-                                INTERVALOS_POR_TURNO, ORDEN_TURNOS)
+from .p01_configuracion import (DIAS_EXTRA, INTERVALOS_POR_DIA, INTERVALOS_POR_HORA, INTERVALOS_POR_TURNO, ORDEN_TURNOS)
 
 
 # --- Normalización de identificadores ---
@@ -22,8 +21,7 @@ def _norm(nombre: str) -> str:
 
 @dataclass
 class Instancia:
-    # Representación numérica completa de una instancia. Los arreglos incluyen
-    # hitos reales y nodos sintéticos; solo los primeros n_hitos consumen recursos.
+    # Representación numérica completa de una instancia. Los arreglos incluyen hitos reales y nodos sintéticos; solo los primeros n_hitos consumen recursos.
     nombre: str
     hitos: pd.DataFrame
     grupos: list

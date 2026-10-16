@@ -1,4 +1,4 @@
-# Paso 6: motor de optimización mediante recocido simulado y búsqueda local.
+# Paso 6: motor de optimización mediante SA y búsqueda local.
 # El flujo público está en p07_ejecutar.py; este módulo contiene los vecindarios y
 # la administración detallada del estado de búsqueda.
 import math
